@@ -1,50 +1,16 @@
-heroInfos = [{
-    'name': '关羽',
-    'combat': 99,
-    'position': '前将军',
-    'weapon': '青龙偃月刀',
-    'mount': '赤兔',
-}, {
-    'name': '张飞',
-    'combat': 98,
-    'position': '左将军',
-    'weapon': '丈八蛇矛',
-    'mount': '王追',
-}, {
-    'name': '马超',
-    'combat': 98,
-    'position': '右将军',
-    'weapon': '虎头湛金枪',
-    'mount': '里飞沙',
-}, {
-    'name': '黄忠',
-    'combat': 96,
-    'position': '后将军',
-    'weapon': ('凤嘴刀', '三石弓'),
-    'mount': '燎原火',
-}, {
-    'name': '赵云',
-    'combat': 99,
-    'position': '征南将军',
-    'weapon': ('青釭剑', '亮银枪'),
-    'mount': '照夜玉狮子',
-}]
-list = []
-sum =0;
-for hero in heroInfos:
-    list.append(hero['combat'])
-    sum += hero['combat']
-high = max(list)
-low = min(list)
-sum = sum/5;
+# 小女孩
+face_landmarks_woman = face_landmarks_list[0]
+browPoint_woman = util.getBrowPoint(face_landmarks_woman)
 
-list_high = []
-list_low = ''
-for hero in heroInfos:
-    if hero['combat'] == high:
-        list_high.append(hero['name'])
-    if hero['combat'] == low:
-        list_low = hero['name']
-print('平均武力值'+str(sum))
-print('武力值最高的是'+str(list_high))
-print('武力值最低的是'+str(list_low))
+chin_woman = face_landmarks['chin']
+leftPoint_woman, rightPoint_woman = util.getLeftRightPoint(chin_woman) # 计算的左右边界
+left_woman = int(leftPoint_woman[0])
+right_woman = int(rightPoint_woman[0])
+newWidth_woman = right_woman - left_woman
+
+# 高度按原来宽高的比例放缩
+newHeight_woman = int(newWidth_woman / width_woman * height_woman)
+# 下边界等于额头中心的Y轴点
+bottom_woman = int(browPoint_woman[1])
+# 上边界等于下边界减去高度
+top_woman = bottom_woman - newHeight_woman
