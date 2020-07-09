@@ -1,4 +1,4 @@
-# python_learning_notes
+# python_basis_learning_notes
 python学习笔记
 ---
 part_one：词云、机器人、语音转文字
